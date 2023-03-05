@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   gridContainer.style.height = `${numRows * (itemSize + 2)}px`;
   gridContainer.style.justifyContent = "center";
   gridContainer.style.alignItems = "center";
+  gridContainer.style.margin = "auto";
 
   // create the individual grid items and append them to the grid container
   for (let i = 0; i < numRows * numCols; i++) {
