@@ -24,11 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // set the grid template and grid container styles
-  gridContainer.style.display = "grid";
-  gridContainer.style.gridTemplateColumns = "repeat(16, 1fr)";
-  gridContainer.style.gridTemplateRows = "repeat(16, 1fr)";
-  gridContainer.style.gap = "1px";
-  gridContainer.style.gridAutoFlow = "dense";
   gridContainer.style.overflow = "auto";
   gridContainer.style.display = "flex";
   gridContainer.style.flexWrap = "wrap";
