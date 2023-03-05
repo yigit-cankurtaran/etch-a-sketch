@@ -1,0 +1,20 @@
+/* give the body a dark gray background. */
+
+body {
+  background-color: #333;
+}
+
+/* give the grid container a white background */
+
+.grid-container {
+  background-color: #fff;
+}
+
+/* make h1 white, give it a modern font, center it above the grid container */
+
+h1 {
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  margin-top: 0;
+}
