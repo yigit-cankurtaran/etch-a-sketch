@@ -3,11 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const gridContainer = document.createElement("div");
   gridContainer.classList.add("grid-container");
   if (document.body) {
-    document.body.appendChild(gridContainer); // problematic line, uncaught typeerror
+    document.body.appendChild(gridContainer);
   }
 
-  // set the dimensions and styles of the grid items
   const gridItems = document.querySelectorAll(".grid-item");
+
+  // calculate container width and item size
   const numRows = 16;
   const numCols = 16;
   const screenMargin = 20;
@@ -15,30 +16,39 @@ document.addEventListener("DOMContentLoaded", () => {
   const screenHeight = window.innerHeight - screenMargin;
   const containerWidth = Math.min(screenWidth, screenHeight) - screenMargin * 2;
   // ensuring that the grid items are square, and that they fit on the screen
-  const itemSize = Math.floor(containerWidth / numCols);
-  // -2 because of the borders
+  const itemSize = Math.floor(containerWidth / numCols) - 2;
+  // 2 because the border is 1px on each side
+
+  // set the grid template and grid container styles
+  gridContainer.style.display = "flex";
+  gridContainer.style.flexWrap = "wrap";
+  gridContainer.style.width = `${numCols * (itemSize + 2)}px`;
+  gridContainer.style.height = `${numRows * (itemSize + 2)}px`;
+  gridContainer.style.justifyContent = "center";
+  gridContainer.style.alignItems = "center";
 
   // create the individual grid items and append them to the grid container
   for (let i = 0; i < numRows * numCols; i++) {
     const gridItem = document.createElement("div");
     gridItem.classList.add("grid-item");
-    // adding them to the item class
-    gridContainer.appendChild(gridItem);
     gridItem.style.width = `${itemSize}px`;
     gridItem.style.height = `${itemSize}px`;
     gridItem.style.border = "1px solid black";
+    gridContainer.appendChild(gridItem);
   }
 
-  gridItems.forEach((gridItem) => {
-    gridItem.style.flex = `1 0 ${100 / numCols}%`;
-    gridItem.style.width = `${itemSize}px`;
-    gridItem.style.height = `${itemSize}px`;
-    gridItem.style.border = "1px solid black";
+  // update grid size when the window is resized
+  window.addEventListener("resize", () => {
+    const screenWidth = window.innerWidth - screenMargin;
+    const screenHeight = window.innerHeight - screenMargin;
+    const containerWidth =
+      Math.min(screenWidth, screenHeight) - screenMargin * 2;
+    const itemSize = Math.floor(containerWidth / numCols) - 2;
+    gridContainer.style.width = `${numCols * (itemSize + 2)}px`;
+    gridContainer.style.height = `${numRows * (itemSize + 2)}px`;
+    gridItems.forEach((item) => {
+      item.style.width = `${itemSize}px`;
+      item.style.height = `${itemSize}px`;
+    });
   });
-
-  // set the grid template and grid container styles
-  gridContainer.style.overflow = "auto";
-  gridContainer.style.display = "flex";
-  gridContainer.style.flexWrap = "wrap";
-  gridContainer.style.width = `${numCols * (itemSize + 2)}px`;
 });
