@@ -36,6 +36,18 @@ document.addEventListener("DOMContentLoaded", () => {
     gridItem.style.height = `${itemSize}px`;
     gridItem.style.border = "1px solid black";
     gridContainer.appendChild(gridItem);
+
+    // hover effect
+
+    gridItem.addEventListener("mouseover", () => {
+      const red = Math.floor(Math.random() * 256);
+      const green = Math.floor(Math.random() * 256);
+      const blue = Math.floor(Math.random() * 256);
+      // rgb values
+      const color = `rgb(${red}, ${green}, ${blue})`;
+      // random color for each grid item
+      gridItem.style.backgroundColor = color;
+    });
   }
 
   // update grid size when the window is resized
